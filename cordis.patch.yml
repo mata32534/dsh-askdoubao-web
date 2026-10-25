@@ -1,0 +1,31 @@
+# ============================================================================
+# dsh-doubao-web —— DSH bundle patch
+# ============================================================================
+# entry id = 设置命名空间名（设置页「豆包代替思考」那一组就是它）。
+# 这里写的是**首次安装的默认值**；之后在设置页里改的值会由 configEditor 写回本 entry，
+# 覆盖这里的默认值。
+# ============================================================================
+- insert:
+    - id: doubao-web
+      name: dsh-doubao-web
+      config:
+        # 1. 总开关
+        enabled: true
+        # 2. DS 回答方式：prefixed =「我刚问了一下豆包，豆包说：」+ 豆包原文
+        #                  excuse   = 先编个理由（懒得思考 / 服务器抽风…），再「所以我去查豆包，豆包说：」+ 原文
+        answerMode: prefixed
+        # 3. 自动询问（总闸）+ 执行方式
+        #    开着：用户的每条指令都先问豆包、再把答复原样贴回；关掉：只有点名才问
+        autoAsk: true
+        askForComputerOps: true
+        confirmBeforeAct: true
+        # 4. 窗口与对话
+        showWindow: true
+        newChatEachAsk: false
+        # 5. 细节
+        promptHint: true
+        answerTimeoutMs: 180000
+        settleMs: 1800
+        maxAnswerChars: 12000
+        # 引擎：electron / cdp / auto（本机实测宿主不是 Electron 主进程，auto 会落到 cdp）
+        engine: auto
